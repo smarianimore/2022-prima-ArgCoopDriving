@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>Adaptive Intersections @ WETICE 2021</title>
+    <meta content="Talk 'An Adaptive Approach for the Coordination of Autonomous Vehicles at Intersections' given by Stefano Mariani at WETICE 2021" name="description">
+    <meta content="Stefano Mariani" name="author">
+
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <link rel="stylesheet" href="reveal.js/dist/reset.css" />
+    <link rel="stylesheet" href="reveal.js/dist/reveal.css" />
+    <link rel="stylesheet" href="reveal.js/dist/theme/white.css" id="theme" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="reveal.js/plugin/highlight/monokai.css"
+      id="highlight-theme"
+    />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section data-transition="convex" data-background-image="wetice.png" data-background-opacity=0.25 data-background-size="cover">
+          <p><small> ACEC @ WETICE, 27/10/2021 </small></p>
+          <hr>
+          <h3> An Adaptive Approach for the Coordination of Autonomous Vehicles at Intersections </h3>
+          <hr>
+          <p> Nicholas Glorio, <a href="https://smarianimore.github.io">Stefano Mariani</a>, Giacomo Cabri, Franco Zambonelli </p>
+          <hr>
+          <p><small><em> Università di Modena e Reggio Emilia </em></small></p>
+        </section>
+
+        <section data-transition="convex" data-background-image="coop-driving.jpeg" data-background-opacity=0.15 data-background-size="cover">
+          <h3> Motivation & Goal </h3>
+          <hr>
+          <ul>
+            <li> current research on self-driving mostly about <em>individual</em> vehicles </li>
+            <div class="fragment">
+              <li> but <em>cooperative driving</em> is necessary for collective vehicles in many situations </li>
+              <ul>
+                <li> e.g. crossing intersections </li>
+              </ul>
+            </div>
+            <div class="fragment">
+              <li> hence we study <strong>intersection management</strong> </li>
+              <ul>
+                <li> <strong>compare</strong> state of art approaches </li>
+                <li> propose <strong>adaptive</strong> approach </li>
+              </ul>
+            </div>
+          </ul>
+        </section>
+
+        <section data-transition="convex" data-background-image="coop-driving.jpeg" data-background-opacity=0.15 data-background-size="cover">
+          <section data-transition="slide">
+            <h3> Intersection crossing: problem </h3>
+            <hr>
+            <ul>
+              <li> decision making process orchestrating vehicles' actions </li>
+              <ul>
+                <li> <strong>necessary</strong> to achieve own goal </li>
+                <li> <em>competitive</em> access to <em>shared</em> resource </li>
+              </ul>
+              <li class="fragment"> poses 3 challenges </li>
+              <ul>
+                <li class="fragment"> <em>safety</em>: no collisions </li>
+                <li class="fragment"> <em>liveness</em>: right of way for everyone </li>
+                <li class="fragment"> <em>quality</em>: max./min. throughput/delay </li>
+              </ul>
+            </ul>
+          </section>
+          <section data-transition="slide">
+            <h3> Intersection crossing: solutions </h3>
+            <hr>
+            <ul>
+              <li> <em>today</em>: traffic light, precedence rules </li>
+              <ul>
+                <li> safe & inefficient </li>
+                <li> efficient & unsafe </li>
+              </ul>
+              <div class="fragment">
+                <li> <em>tomorrow</em>: thanks to V2I / V2V </li>
+                <ul>
+                  <li> reservation </li>
+                  <li> negotiation (e.g. auction) </li>
+                  <li> others (e.g. DCOP, game-theoretic, self-org) </li>
+                </ul>
+              </div>
+            </ul>
+          </section>
+          <section data-transition="slide">
+            <h3> Selected approaches </h3>
+            <hr>
+            <ul>
+              <li> precedence-based <strong>right of way</strong> as baseline </li>
+              <div class="fragment">
+                <li> centralised <strong>reservation-based</strong> as "best in class" </li>
+                <small><ul>
+                  <li> IM receives space-time reservations for intersection cells from approaching vehicles </li>
+                  <li> IM elaborates collision-free trajectories </li>
+                  <li> IM communicates back to vehicles their parameters for crossing (e.g. speed profile) </li>
+                </ul></small>
+              </div>
+              <div class="fragment">
+                <li> decentralised <strong>competitive auction</strong> as state-of-art </li>
+                <small><ul>
+                  <li> vehicles bid for space-time slots within the intersection </li>
+                  <li> non-colliding vehicles cross simultaneously </li>
+                  <li> a broker collects bids and ranks them to assign the right of way </li>
+                </ul></small>
+              </div>
+            </ul>
+          </section>
+        </section>
+
+        <section data-transition="convex" data-background-image="sumo.png" data-background-opacity=0.10 data-background-size="cover">
+          <section data-transition="slide">
+            <h3> Performance comparison </h3>
+            <hr>
+            <ul>
+              <li> SUMO simulations, controlled via TraCi API (<a href="https://www.eclipse.org/sumo/">www.eclipse.org/sumo/</a>) </li>
+              <li> <strong>reservation</strong> based on temporal allocations of the intersection area, divided into a grid of occupancy cells [1] </li>
+              <li> <strong>English auctions</strong> with virtual wallets [2] </li>
+            </ul>
+            <hr>
+            <p style="color:grey"><small><em> [1] Kurt M. Dresner, Peter Stone: A Multiagent Approach to Autonomous Intersection Management. J. Artif. Intell. Res. 31: 591-656 (2008) </em></small></p>
+            <p style="color:grey"><small><em> [2] Dustin Carlino, Stephen D. Boyles, Peter Stone: Auction-based autonomous intersection management. ITSC 2013: 529-534 </em></small></p>
+          </section>
+          <section data-transition="slide">
+            <h3> Simulation settings </h3>
+            <hr>
+            <style>
+              .container{
+                display: flex;
+              }
+              .col{
+                flex: 1;
+              }
+            </style>
+            <div class="container">
+              <div class="col">
+                <img width="512" height="384" align="left" data-src="junction.png">
+              </div>
+              <div class="col">
+                <ul>
+                  <li> single 4-ways junction </li>
+                  <li> 3 lanes for each way </li>
+                  <li> 1 to 4 vehicles/second (traffic condition) </li>
+                  <li> 33/66 % of left turning </li>
+                  <li> 30 runs for each params combination </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          <section data-transition="slide">
+            <h3> Results </h3>
+            <hr>
+            <style>
+              .container{
+                display: flex;
+              }
+              .col{
+                flex: 1;
+              }
+            </style>
+            <div class="container">
+              <div class="col">
+                <img width="512" height="384" align="left" data-src="throughput_24-05-2021.png">
+              </div>
+              <div class="col">
+                <img width="512" height="384" align="left" data-src="st_dev_head_time_24-05-2021.png">
+              </div>
+            </div>
+            <ul>
+              <li class="fragment"> no approach works best across traffic conditions </li>
+              <li class="fragment"> no approach works best across performance metrics </li>
+            </ul>
+          </section>
+        </section>
+
+        <section data-transition="convex" data-background-image="adaptation.jpg" data-background-opacity=0.25 data-background-size="cover">
+          <section data-transition="slide">
+            <h3> Adaptive approach </h3>
+            <hr>
+            <ul>
+              <li class="fragment"> <strong>learn</strong> which approach works best in which traffic condition </li>
+              <li class="fragment"> <strong>apply</strong> the best approach known upon changing conditions </li>
+              <li class="fragment"> both with respect to a <em>target performance metric</em> </li>
+            </ul>
+            <hr>
+            <p class="fragment">
+              <small><em>municipalities already do this!<br>(e.g. traffic lights turned off at night)</em></small>
+            </p>
+          </section>
+          <section data-transition="slide">
+            <h3> Adaptive Intersection Manager (AIM) </h3>
+            <hr>
+            <ol>
+              <div class="fragment">
+                <li> learning phase (naive <em>Q-learning</em>*): </li>
+                <small><ol>
+                  <li> randomly select coordination approach $A$ </li>
+                  <li> apply $A$ for a given time $T$ </li>
+                  <li> monitor both traffic conditions $C$ and target performance metric $M$ during $T$ </li>
+                </ol></small>
+              </div>
+              <div class="fragment">
+                <li> adaptation phase: </li>
+                <small><ol>
+                  <li> sample traffic condition $C$ </li>
+                  <li> lookup best approach $A$ for $C$ regarding $M$ </li>
+                  <li> apply $A$ until $C \rightarrow C'$ </li>
+                  <li> loop </li>
+                </ol></small>
+              </div>
+            </ol>
+            <hr>
+            <p class="fragment"><small><em> * action = application of $a \in A$ during $T$, reward = $M$ measured during $T$ </em></small></p>
+          </section>
+          <section data-transition="slide">
+            <h3> Results </h3>
+            <hr>
+            <style>
+              .container{
+                display: flex;
+              }
+              .col{
+                flex: 1;
+              }
+            </style>
+            <div class="container">
+              <div class="col">
+                <img width="512" height="384" align="left" data-src="th_training_th2.png">
+              </div>
+              <div class="col">
+                <img width="512" height="384" align="left" data-src="sv_training_sv2.png">
+              </div>
+            </div>
+            <ul>
+              <li class="fragment"> the AIM <em>pursues</em> the best $A$ known for every $C$ </li>
+              <li class="fragment"> the AIM accounts for the target $M$ to optimise </li>
+            </ul>
+          </section>
+        </section>
+
+        <section data-transition="convex" data-background-image="dead-end.jpg" data-background-opacity=0.15 data-background-size="cover">
+          <h3> Conclusion & outlook </h3>
+          <hr>
+          <style>
+            .container{
+              display: flex;
+            }
+            .col{
+              flex: 1;
+            }
+          </style>
+          <div class="container">
+            <div class="col fragment">
+              <ul>
+                <li> adaptive approach to intersection crossing presented </li>
+                <li> simulations validate approach empirically </li>
+                <li> promising results despite simplicity </li>
+              </ul>
+            </div>
+            <div class="col fragment">
+              <ul>
+                <li> extend to more complex measure of $C$ </li>
+                <li> extend to more $m \in M$ at once </li>
+                <li> extend to more sophisticated learning </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section data-transition="convex" data-background-image="confused-meme.png" data-background-opacity=0.25 data-background-size="cover">
+          <h3> Thanks </h3>
+          <h3> for your attention </h3>
+          <hr>
+          <p><a href="https://smarianimore.github.io"> Stefano Mariani </a></p>
+          <hr>
+          <p><em> Università di Modena e Reggio Emilia </em></p>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="reveal.js/dist/reveal.js"></script>
+    <script src="reveal.js/plugin/notes/notes.js"></script>
+    <script src="reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="reveal.js/plugin/highlight/highlight.js"></script>
+    <script src="reveal.js/plugin/zoom/zoom.js"></script>
+    <script src="reveal.js/plugin/math/math.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        progress: true,
+        //autoSlide: 3000,
+        pdfSeparateFragments: false,
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, RevealMath],
+      });
+    </script>
+  </body>
+</html>
