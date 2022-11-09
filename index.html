@@ -8,7 +8,7 @@
     />
 
     <title>Adaptive Intersections @ WETICE 2021</title>
-    <meta content="Talk 'An Adaptive Approach for the Coordination of Autonomous Vehicles at Intersections' given by Stefano Mariani at WETICE 2021" name="description">
+    <meta content="Talk 'Cooperative driving at intersections through agent-based argumentation' given by Stefano Mariani at PRIMA 2022" name="description">
     <meta content="Stefano Mariani" name="author">
 
     <meta content="yes" name="apple-mobile-web-app-capable">
@@ -39,14 +39,93 @@
     <div class="reveal">
       <div class="slides">
 
-        <section data-transition="convex" data-background-image="wetice.png" data-background-opacity=0.25 data-background-size="cover">
-          <p><small> ACEC @ WETICE, 27/10/2021 </small></p>
+        <section data-transition="convex" data-background-image="res/prima.png" data-background-opacity=0.25 data-background-size="cover">
+          <p><small> PRIMA 2022, 16/11/2022 </small></p>
           <hr>
-          <h3> An Adaptive Approach for the Coordination of Autonomous Vehicles at Intersections </h3>
+          <h3> Cooperative driving at intersections through agent-based argumentation </h3>
           <hr>
-          <p> Nicholas Glorio, <a href="https://smarianimore.github.io">Stefano Mariani</a>, Giacomo Cabri, Franco Zambonelli </p>
+          <p> <a href="https://smarianimore.github.io">Stefano Mariani</a>, Dario Ferrari, Franco Zambonelli </p>
           <hr>
           <p><small><em> Università di Modena e Reggio Emilia </em></small></p>
+        </section>
+
+        <section>
+          <h3> Outline </h3>
+          <ul>
+            <li> motivations </li>
+              <ul>
+                <li> self-driving cars in the streets </li>
+                <li> autonomous drivining $\mapsto$ cooperative driving </li>
+                <li> intersection crossing pervasive problem </li>
+              </ul>
+            <li> goal </li>
+              <ul>
+                <li> argumentation-based coordination to complement existing approaches </li>
+              </ul>
+            <li> contribution </li>
+              <ol>
+                <li> argumentation process </li>
+                <li> proof-of-concept (PoC) simulator </li>
+                <li> evaluation </li>
+              </ol>
+            <li> background </li>
+              <ul>
+                <li> argumentation </li>
+                  <ul>
+                    <li> "rules of the game" for human disputes resolution </li>
+                    <li> computationally exploited for, e.g., coordination in MAS </li>
+                    <li> in a nutshell  </li>
+                      <ul>
+                        <li> arguments as (logic) facts accepted as true until attacked </li>
+                        <li> attacks $\approx conflicting facts </li>
+                        <li> inference rules can be attacked, too </li>
+                        <li> goal: establish valid arguments ($\approx$ not attacked) </li>
+                      </ul>
+                  </ul>
+                <li> preference ordering </li>
+                  <ul>
+                    <li> what if all arguments are attacked?? </li>
+                    <li> attach "strength" to arguments and inference rules to break symmetry </li>
+                    <li> our proposal: pluggable conflicts resolution policy (e.g. alternate route) </li>
+                  </ul>
+                <li> arg-example.png </li>
+              </ul>
+            <li> vision: 2021-argumentation-driving-example.pdf </li>
+            <li> argumentation process in a nutshell </li>
+              <ol>
+                <li> incoming vehicles data $\mapsto$ argumentation graph </li>
+                <li> $\forall$ vehicle check conflicts </li>
+                  <ul>
+                    <li> no: vehicle gets right of way </li>
+                    <li> yes: argue with conflicting vehicles </li>
+                  </ul>
+                <li> conflict solved? </li>
+                  <ul>
+                    <li> yes: give right of way accordingly </li>
+                    <li> no: resolve with resolution policy </li>
+                  </ul>
+              </ol>
+            <li> evaluation setup </li>
+              <ul>
+                <li> codebase of PoC: [in the paper](https://github.com/DarioFerrari-git/AutoA) </li>
+                <li> reference scenario: 2021-argumentation-driving-network.pdf </li>
+                <li> simulation routine (simplified) </li>
+                  <ol>
+                    <li> spawn vehicles at each intersection with $A$ alternative routes of length $L$ each </li>
+                    <li> trigger argumentation process when vehicles within intersection range </li>
+                    <li> update vehicles' data (e.g. pos, speed, route) </li>
+                  </ol>
+                <li> params.png </li>
+              </ul>
+            <li> results </li>
+              <ul>
+                <li> conflicts resolution </li>
+                <li> alternative routes to solve conflicts </li>
+                <li> impact on traffic: throughput </li>
+                <li> impact on traffic: delay </li>
+              </ul>
+            <li> conclusion and outlook </li>
+          </ul>
         </section>
 
         <section data-transition="convex" data-background-image="coop-driving.jpeg" data-background-opacity=0.15 data-background-size="cover">

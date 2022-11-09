@@ -1,6 +1,6 @@
 # READ ME
 
-Talk *'An Adaptive Approach for the Coordination of Autonomous Vehicles at Intersections'* given by [Stefano Mariani](https://smarianimore.github.io) at [WETICE 2021](http://eexposit.perso.univ-pau.fr/wetice/)
+Talk *'Cooperative driving at intersections through agent-based argumentation'* given by [Stefano Mariani](https://smarianimore.github.io) at [PRIMA 2022](https://prima2022.webs.upv.es/accepted-papers/): the 24th International Conference on Principles and Practice of Multi-Agent Systems.
 
 # Credits
 
