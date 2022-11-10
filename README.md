@@ -2,6 +2,11 @@
 
 Talk *'Cooperative driving at intersections through agent-based argumentation'* given by [Stefano Mariani](https://smarianimore.github.io) at [PRIMA 2022](https://prima2022.webs.upv.es/accepted-papers/): the 24th International Conference on Principles and Practice of Multi-Agent Systems.
 
+Slides:
+ 
+ * [interactive version](https://smarianimore.github.io/2022-prima-ArgCoopDriving/)
+ * [PDF version](https://smarianimore.github.io/2022-prima-ArgCoopDriving/?print-pdf)
+
 # Credits
 
 Reveal.js template presentation as a GitHub repo Template: [here](https://github.com/pacharanero/create-new-revealjs-template)
