@@ -49,39 +49,33 @@
           <p><small><em> Università di Modena e Reggio Emilia </em></small></p>
         </section>
 
-        <section data-transition="convex" data-background-image="res/outline.jpg" data-background-opacity=0.25 data-background-size="cover">
-          <h3> Outline </h3>
-          <ol>
-            <li> motivations, goal, contributions </li>
-            <li> proposed approach </li>
-              <ol><small>
-                <li> vision </li>
-                <li> argumentation </li>
-                <li> preference ordering </li>
-                <li> process </li>
-              </small></ol>
-            <li> results </li>
-              <ol><small>
-                <li> evaluation setup </li>
-                <li> conflicts resolution </li>
-                <li> alternative routes </li>
-                <li> impact on throughput </li>
-                <li> impact on delay </li>
-              </small></ol>
-            <li> conclusion and outlook </li>
-          </ol>
-        </section>
-
         <section data-transition="convex" data-background-image="res/coop-driving.jpeg" data-background-opacity=0.15 data-background-size="cover">
           <section data-transition="slide">
             <h3> Motivations </h3>
             <hr>
-            <ul>
-              <li> self-driving cars in the streets </li>
-              <li> autonomous driving $\longrightarrow$ cooperative driving <span style="color:grey">[1]</span> </li>
-              <li> intersection crossing pervasive problem </li>
-            </ul>
-            <p style="color:grey"><small><em> [1] Englund at al.: "The grand cooperative driving challenge 2016: boosting the introduction of cooperative automated vehicles." IEEE Wireless Communications </em></small></p>
+            <style>
+              .container{
+                display: flex;
+              }
+              .col{
+                flex: 1;
+              }
+            </style>
+            <div class="container">
+              <div class="col">
+                <img height="80%" align="left" data-src="res/autonomy-degree.jpg">
+              </div>
+              <div class="col">
+                <ul>
+                  <li> self-driving cars in the streets </li>
+                  <li> autonomous driving $\longrightarrow$ cooperative driving <span style="color:grey">[1]</span> </li>
+                  <li> intersection crossing pervasive problem </li>
+                  <li> many approaches available in analysed literature <span style="color:grey">[2]</span> </li>
+                </ul>
+                <p style="color:grey; padding-bottom:0; margin-bottom:0"><small><em> [1] Englund et al.: "The grand cooperative driving challenge 2016: boosting the introduction of cooperative automated vehicles." IEEE Wireless Communications </em></small></p>
+                <p style="color:grey; padding:0; margin:0"><small><em> [2] Mariani et al.: <a href="https://doi.org/10.1145/3431231">"Coordination of autonomous vehicles: Taxonomy and survey."</a> ACM Computing Surveys </em></small></p>
+              </div>
+            </div>
           </section>
           <section data-transition="slide" data-background-image="res/argumentation.svg" data-background-opacity=0.15 data-background-size="cover">
             <h3> Goal & Contributions</h3>
@@ -332,7 +326,7 @@
             <div class="col">
               <ul>
                 <li> performance improvements </li>
-                <li> complementary, not in competition, with SOTA strategies </li>
+                <li> complementary, not in competition, with State Of The Art (SOTA) strategies </li>
                 <li> plug-in conflicts resolution policy </li>
                 <li class="fragment"> argumentation process can be <strong>decentralised</strong> </li>
                 <li class="fragment"> naturally suitable for <strong>mixed scenarios</strong> humans / self-driving </li>
